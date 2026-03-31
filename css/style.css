@@ -2,19 +2,6 @@
    みとしごとナビ - Gen-Z / Student Style
    ============================================ */
 
-/* ---------- Demo Banner ---------- */
-.demo-banner {
-  background: #E74C3C;
-  color: #fff;
-  text-align: center;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  position: relative;
-  z-index: 1001;
-}
-
 /* ---------- Reset & Base ---------- */
 *,
 *::before,
