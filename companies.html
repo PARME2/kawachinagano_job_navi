@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企業検索 | かわちながのジョブナビ</title>
+  <meta name="description" content="河内長野市の企業を検索。職種・業種から探せます。製造業・エネルギー・農業・福祉・小売・サービスなど多彩な企業が集まっています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i data-lucide="building-2"></i></div>
+        <div class="logo-text">かわちながのジョブナビ<span>KAWACHINAGANO JOB NAVI</span></div>
+      </a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="companies.html" class="active">企業検索</a></li>
+          <li><a href="events.html">イベント</a></li>
+          <li><a href="recommend.html">適職診断</a></li>
+          <li><a href="intern.html">インターン提案</a></li>
+          <li><a href="support.html">就職支援</a></li>
+          <li><a href="mail_register.html" class="nav-cta"><i data-lucide="mail" class="lucide"></i> メール登録</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-overlay"></div>
+    </div>
+  </header>
+
+  <section class="page-hero ph-purple">
+    <div class="container">
+      <div class="section-tag tag-purple"><i data-lucide="search" class="lucide"></i> COMPANY SEARCH</div>
+      <h1 class="section-title">企業検索</h1>
+      <p class="section-desc">河内長野市で活躍する企業を探してみよう</p>
+    </div>
+  </section>
+
+  <!-- Search Box -->
+  <section class="section" style="background: var(--bg-white); padding-bottom: 0;">
+    <div class="container">
+      <div class="company-search-box fade-up">
+        <div class="search-input-wrap">
+          <i data-lucide="search" class="lucide search-icon"></i>
+          <input type="text" id="company-search-input" placeholder="企業名・業種・職種で検索..." class="search-input">
+          <button class="btn btn-primary btn-sm" onclick="filterCompanies()">検索</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Categories -->
+  <section class="section" style="background: var(--bg-white); padding-top: 40px; padding-bottom: 0;">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag tag-purple"><i data-lucide="briefcase" class="lucide"></i> JOB CATEGORY</div>
+        <h2 class="section-title">仕事内容から探す</h2>
+      </div>
+      <div class="category-grid fade-up">
+        <div class="category-card c-purple" onclick="filterByKeyword('総合職')">
+          <div class="category-icon-wrap"><i data-lucide="briefcase" class="lucide"></i></div>
+          <div class="category-name">総合職</div>
+        </div>
+        <div class="category-card c-teal" onclick="filterByKeyword('事務職')">
+          <div class="category-icon-wrap"><i data-lucide="file-text" class="lucide"></i></div>
+          <div class="category-name">事務職</div>
+        </div>
+        <div class="category-card c-blue" onclick="filterByKeyword('技術職')">
+          <div class="category-icon-wrap"><i data-lucide="wrench" class="lucide"></i></div>
+          <div class="category-name">技術職</div>
+        </div>
+        <div class="category-card c-orange" onclick="filterByKeyword('営業職')">
+          <div class="category-icon-wrap"><i data-lucide="trending-up" class="lucide"></i></div>
+          <div class="category-name">営業職</div>
+        </div>
+        <div class="category-card c-pink" onclick="filterByKeyword('製造')">
+          <div class="category-icon-wrap"><i data-lucide="factory" class="lucide"></i></div>
+          <div class="category-name">製造職</div>
+        </div>
+        <div class="category-card c-mint" onclick="filterByKeyword('運転')">
+          <div class="category-icon-wrap"><i data-lucide="truck" class="lucide"></i></div>
+          <div class="category-name">運転職</div>
+        </div>
+        <div class="category-card c-coral" onclick="filterByKeyword('接客')">
+          <div class="category-icon-wrap"><i data-lucide="smile" class="lucide"></i></div>
+          <div class="category-name">接客職</div>
+        </div>
+        <div class="category-card c-yellow" onclick="filterByKeyword('専門')">
+          <div class="category-icon-wrap"><i data-lucide="graduation-cap" class="lucide"></i></div>
+          <div class="category-name">専門職</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry -->
+  <section class="section" style="background: var(--bg-white); padding-top: 40px; padding-bottom: 0;">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag tag-teal"><i data-lucide="layout-grid" class="lucide"></i> INDUSTRY</div>
+        <h2 class="section-title">業種から探す</h2>
+      </div>
+      <div class="industry-grid fade-up">
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('農林水産')"><i data-lucide="sprout" class="lucide" style="color:#00B894"></i>農林水産業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('建設')"><i data-lucide="hard-hat" class="lucide" style="color:#F39C12"></i>建設業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('製造')"><i data-lucide="factory" class="lucide" style="color:#6C5CE7"></i>製造業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('電気')"><i data-lucide="zap" class="lucide" style="color:#FDCB6E"></i>電気・ガス・水道業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('情報')"><i data-lucide="wifi" class="lucide" style="color:#74B9FF"></i>情報・通信業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('運輸')"><i data-lucide="truck" class="lucide" style="color:#00CEC9"></i>運輸・郵便業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('卸売')"><i data-lucide="shopping-bag" class="lucide" style="color:#FD79A8"></i>卸売・小売業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('金融')"><i data-lucide="landmark" class="lucide" style="color:#F39C12"></i>金融・保険業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('不動産')"><i data-lucide="key" class="lucide" style="color:#00B894"></i>不動産・物品賃貸業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('研究')"><i data-lucide="microscope" class="lucide" style="color:#74B9FF"></i>研究・技術サービス業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('宿泊')"><i data-lucide="coffee" class="lucide" style="color:#FF7675"></i>宿泊・飲食業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('生活')"><i data-lucide="sparkles" class="lucide" style="color:#A29BFE"></i>生活・娯楽業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('教育')"><i data-lucide="book-open" class="lucide" style="color:#FDCB6E"></i>教育・学習支援業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('医療')"><i data-lucide="heart-pulse" class="lucide" style="color:#00CEC9"></i>医療・福祉業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('サービス')"><i data-lucide="users" class="lucide" style="color:#FD79A8"></i>サービス業</a>
+        <a href="javascript:void(0)" class="industry-tag" onclick="filterByKeyword('')"><i data-lucide="rotate-ccw" class="lucide" style="color:#B2BEC3"></i>すべて表示</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Grid -->
+  <section id="company-list" class="section" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">河内長野市の企業を検索</h2>
+        <p class="section-desc">河内長野市の企業情報を掲載しています</p>
+      </div>
+      <div class="co-grid fade-up">
+
+        <!-- 株式会社タカショー -->
+        <div class="co-card" id="company-1" data-industry="製造業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="株式会社タカショー">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">MANUFACTURING</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">株式会社タカショー</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="factory" class="lucide"></i> 製造業</span>
+              <span class="tag tag-job"><i data-lucide="wrench" class="lucide"></i> 技術職</span>
+            </div>
+            <p class="co-catch">ガーデニング・エクステリアのリーディングカンパニー</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">庭園資材・エクステリア製品の製造・販売。国内トップシェアを誇り、海外にも展開。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">庭園資材・エクステリア製品の製造・販売</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約500名</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="calendar" class="lucide"></i> 設立</div><div class="cd-info-value">1980年</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">ガーデン文化を創造する企業。グローバルに事業を展開</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 社員寮</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 資格取得支援</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> フレックスタイム制</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 社員割引</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>ものづくりが好きな方、ガーデニングやデザインに興味がある方。グローバルな視野を持ち、チャレンジ精神のある方を歓迎します。</p></div>
+          </div>
+        </div>
+
+        <!-- 河内長野ガス株式会社 -->
+        <div class="co-card" id="company-2" data-industry="電気・ガス・水道業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="河内長野ガス株式会社">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">ENERGY</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">河内長野ガス株式会社</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="zap" class="lucide"></i> 電気・ガス・水道業</span>
+              <span class="tag tag-job"><i data-lucide="wrench" class="lucide"></i> 技術職</span>
+            </div>
+            <p class="co-catch">地域のライフラインを支えるエネルギー企業</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">河内長野市を中心にガス供給事業を展開。地域密着で安全・安心なエネルギーを届ける。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">都市ガスの供給・販売、ガス機器の販売・メンテナンス</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約100名</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="calendar" class="lucide"></i> 設立</div><div class="cd-info-value">1963年</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">安全第一。地域に根ざした堅実な経営で安定した職場環境</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 完全週休二日制</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 資格取得支援</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 退職金制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 各種手当充実</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>地域のインフラを支える責任感のある方。安全意識が高く、誠実にコツコツと仕事に取り組める方を歓迎します。</p></div>
+          </div>
+        </div>
+
+        <!-- 南河内農業協同組合 -->
+        <div class="co-card" id="company-3" data-industry="農林水産業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="南河内農業協同組合（JA南河内）">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">AGRICULTURE</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">南河内農業協同組合（JA南河内）</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="sprout" class="lucide"></i> 農林水産業</span>
+              <span class="tag tag-job"><i data-lucide="briefcase" class="lucide"></i> 総合職</span>
+            </div>
+            <p class="co-catch">南河内の農業を支える地域の要</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">農産物の販売支援、営農指導、金融サービスなど、地域農業と住民の暮らしを総合的にサポート。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">農産物の販売支援、営農指導、金融・共済サービス</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約300名</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">地域密着。農業と住民の暮らしを支える総合サービス組織</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 完全週休二日制</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 各種共済制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 退職金制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 研修制度充実</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>地域の農業と住民の暮らしに貢献したい方。コミュニケーション能力があり、幅広い業務に積極的に取り組める方を歓迎します。</p></div>
+          </div>
+        </div>
+
+        <!-- 河内長野市社会福祉協議会 -->
+        <div class="co-card" id="company-4" data-industry="医療・福祉業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="河内長野市社会福祉協議会">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">WELFARE</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">社会福祉法人 河内長野市社会福祉協議会</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="heart-pulse" class="lucide"></i> 医療・福祉業</span>
+              <span class="tag tag-job"><i data-lucide="heart" class="lucide"></i> 福祉職</span>
+            </div>
+            <p class="co-catch">地域福祉のネットワークを支える</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">高齢者・障がい者の支援事業、地域ボランティアセンターの運営など地域福祉の中核。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">高齢者・障がい者支援、地域ボランティアセンター運営、生活支援</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約200名</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">人を支えることにやりがいを感じられる温かい職場環境</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 完全週休二日制</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 資格取得支援</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 退職金制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 研修制度充実</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>人の役に立ちたい気持ちがある方、地域福祉に関心のある方。福祉の資格や経験がなくても、研修で学べる環境を整えています。</p></div>
+          </div>
+        </div>
+
+        <!-- 株式会社コノミヤ 河内長野店 -->
+        <div class="co-card" id="company-5" data-industry="卸売・小売業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="株式会社コノミヤ 河内長野店">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">RETAIL</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">株式会社コノミヤ 河内長野店</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="shopping-bag" class="lucide"></i> 卸売・小売業</span>
+              <span class="tag tag-job"><i data-lucide="smile" class="lucide"></i> 接客職</span>
+            </div>
+            <p class="co-catch">地域に愛されるスーパーマーケット</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">食品スーパーとして地域の食卓を支える。新鮮な生鮮食品と地元食材にこだわり。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">食品スーパーマーケットの運営、生鮮食品・加工食品の販売</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約50名（店舗）</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">お客様第一。明るく活気のある職場で、地域に根ざした商売</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 社員割引制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 各種手当充実</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 退職金制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 研修制度あり</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>明るく元気に接客できる方、食に興味がある方。未経験でも丁寧に教えます。地域のお客様に笑顔を届けたい方を歓迎！</p></div>
+          </div>
+        </div>
+
+        <!-- 株式会社南海ビルサービス -->
+        <div class="co-card" id="company-6" data-industry="サービス業" onclick="toggleDetail(this)">
+          <div class="co-photo">
+            <img src="images/company_placeholder.png" alt="株式会社南海ビルサービス">
+            <div class="co-photo-overlay">
+              <span class="co-photo-label">SERVICE</span>
+            </div>
+          </div>
+          <div class="co-body">
+            <h3 class="co-name">株式会社南海ビルサービス</h3>
+            <div class="co-meta">
+              <span class="tag tag-industry"><i data-lucide="users" class="lucide"></i> サービス業</span>
+              <span class="tag tag-job"><i data-lucide="wrench" class="lucide"></i> 技術職</span>
+            </div>
+            <p class="co-catch">南海グループの施設管理のプロフェッショナル</p>
+            <button class="co-toggle-btn"><span>詳しく見る</span> <i data-lucide="chevron-down" class="lucide"></i></button>
+          </div>
+          <div class="co-detail">
+            <p class="cd-description">ビル管理・清掃・設備保守を手掛ける。南海電鉄グループの安定基盤。</p>
+            <div class="cd-info-grid">
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="briefcase" class="lucide"></i> 事業内容</div><div class="cd-info-value">ビル管理、清掃業務、設備保守・メンテナンス</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="users" class="lucide"></i> 従業員数</div><div class="cd-info-value">約400名</div></div>
+              <div class="cd-info-item"><div class="cd-info-label"><i data-lucide="heart" class="lucide"></i> 社風</div><div class="cd-info-value">南海電鉄グループの安定基盤。チームワークを大切にする職場</div></div>
+            </div>
+            <div class="cd-benefits"><h4 class="cd-benefits-title"><i data-lucide="gift" class="lucide"></i> 福利厚生</h4><div class="cd-benefits-list"><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 南海グループ福利厚生</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 資格取得支援</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 退職金制度</span><span class="cd-benefit"><i data-lucide="check-circle" class="lucide"></i> 各種手当充実</span></div></div>
+            <div class="cd-seeking"><h4><i data-lucide="user-check" class="lucide"></i> 求める人物像</h4><p>建物の維持管理に興味がある方、コツコツと丁寧に仕事ができる方。設備管理の資格取得をバックアップします。</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 企業紹介動画 -->
+  <section class="section" style="background: var(--bg-lavender);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 36px;" class="fade-up">
+        <div class="section-tag tag-purple"><i data-lucide="play-circle" class="lucide"></i> COMPANY MOVIES</div>
+        <h2 class="section-title">企業紹介動画</h2>
+        <p class="section-desc">河内長野市の企業の雰囲気を動画でチェック</p>
+      </div>
+      <div class="video-grid fade-up">
+        <!-- 企業の動画が届き次第、ここに追加 -->
+      </div>
+      <p class="video-coming-soon fade-up">企業の紹介動画は順次公開予定です</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container fade-up" style="text-align: center;">
+      <h2 class="section-title">あなたに合った企業を見つけよう</h2>
+      <p class="section-desc" style="margin-bottom: 28px;">適職診断であなたの強みに合った企業をマッチング</p>
+      <a href="recommend.html" class="btn btn-primary"><i data-lucide="sparkles" class="lucide"></i> 適職診断を受ける</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="footer-logo-icon"><i data-lucide="building-2" class="lucide"></i></div>
+            <div class="footer-logo-text">かわちながのジョブナビ<span>河内長野市企業情報提供サイト</span></div>
+          </div>
+          <p class="footer-text">大阪府河内長野市の企業情報・求人情報・就職支援・創業支援の総合ポータルサイトです。</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">サイトマップ</h4>
+          <div class="footer-links">
+            <a href="index.html"><i data-lucide="chevron-right" class="lucide"></i> ホーム</a>
+            <a href="companies.html"><i data-lucide="chevron-right" class="lucide"></i> 企業検索</a>
+            <a href="events.html"><i data-lucide="chevron-right" class="lucide"></i> イベント</a>
+            <a href="recommend.html"><i data-lucide="chevron-right" class="lucide"></i> 適職診断</a>
+            <a href="intern.html"><i data-lucide="chevron-right" class="lucide"></i> インターン提案</a>
+            <a href="support.html"><i data-lucide="chevron-right" class="lucide"></i> 就職・創業支援</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">関連リンク</h4>
+          <div class="footer-links">
+            <a href="https://www.city.kawachinagano.lg.jp/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> 河内長野市公式サイト</a>
+            <a href="https://shigotofield.jp/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> OSAKAしごとフィールド</a>
+            <a href="https://www.hellowork.mhlw.go.jp/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> ハローワーク</a>
+            <a href="https://www.city.kawachinagano.lg.jp/kanko/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> 奥河内観光情報</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 かわちながのジョブナビ - 河内長野市企業情報提供サイト</div>
+    </div>
+  </footer>
+
+  <button class="page-top" aria-label="ページトップへ戻る"><i data-lucide="chevron-up" class="lucide"></i></button>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/main.js"></script>
+  <script>
+    lucide.createIcons();
+
+    function toggleDetail(card) {
+      const wasOpen = card.classList.contains('open');
+      document.querySelectorAll('.co-card.open').forEach(c => c.classList.remove('open'));
+      if (!wasOpen) {
+        card.classList.add('open');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+    }
+
+    function filterByKeyword(keyword) {
+      document.getElementById('company-search-input').value = keyword;
+      filterCompanies();
+      document.getElementById('company-list').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterCompanies() {
+      const query = document.getElementById('company-search-input').value.trim().toLowerCase();
+      document.querySelectorAll('.co-card').forEach(card => {
+        if (!query) {
+          card.style.display = '';
+          return;
+        }
+        const text = card.textContent.toLowerCase();
+        const industry = (card.dataset.industry || '').toLowerCase();
+        card.style.display = (text.includes(query) || industry.includes(query)) ? '' : 'none';
+      });
+    }
+
+    document.getElementById('company-search-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        filterCompanies();
+        document.getElementById('company-list').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // ハッシュ付きURL（例: #company-1）で該当カードを自動展開
+    (function() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#company-')) {
+        const card = document.querySelector(hash);
+        if (card) {
+          setTimeout(function() {
+            card.classList.add('open');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
