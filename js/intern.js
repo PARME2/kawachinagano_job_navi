@@ -186,23 +186,16 @@ let messages = [];
 let step = 0;
 let isTyping = false;
 
-// --- Gemini API ---
-const GEMINI_API_KEY = 'AIzaSyAFtnGd3_3h-b0pEe_aiHhX5q5XBXRdjV8';
-
-async function callGemini(prompt, systemInstruction) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
-  const payload = { contents: [{ parts: [{ text: prompt }] }] };
-  if (systemInstruction) {
-    payload.systemInstruction = { parts: [{ text: systemInstruction }] };
-  }
-  const res = await fetch(url, {
+// --- OpenAI API (サーバーサイドプロキシ経由) ---
+async function callAI(prompt, systemInstruction) {
+  const res = await fetch('/api/openai', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({ prompt, systemInstruction })
   });
-  if (!res.ok) throw new Error('Gemini API request failed');
+  if (!res.ok) throw new Error('API request failed');
   const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '申し訳ありません。回答を生成できませんでした。';
+  return data.text || '申し訳ありません。回答を生成できませんでした。';
 }
 
 // --- チャットUI ---
@@ -301,7 +294,7 @@ async function handleSend() {
       const history = messages.map(m => `${m.role === 'user' ? 'ユーザー' : 'AI'}: ${m.content}`).join('\n');
       const prompt = `これまでの会話:\n${history}\n\n上記の会話の続きとして、次の質問をしてください。`;
       const sys = SYSTEM_PROMPT + `\n\n現在 ${step}/5 ターン目の回答を受け取りました。次は ${step + 1}/5 ターン目の質問をしてください。`;
-      const aiResponse = await callGemini(prompt, sys);
+      const aiResponse = await callAI(prompt, sys);
       hideTyping();
       addMessage('bot', aiResponse);
       input.disabled = false;
@@ -361,7 +354,7 @@ ${internList}
 ]`;
 
     const sys = 'あなたはインターンシップマッチングの専門家です。ユーザーの専攻・スキル・興味・志向に基づいて最適なインターンを選びます。必ずJSON形式のみで回答してください。';
-    const result = await callGemini(prompt, sys);
+    const result = await callAI(prompt, sys);
 
     clearInterval(interval);
 

@@ -12,26 +12,31 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY is not configured' });
+    return res.status(500).json({ error: 'OPENAI_API_KEY is not configured' });
   }
 
   try {
     const { prompt, systemInstruction } = req.body;
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-    const payload = {
-      contents: [{ parts: [{ text: prompt }] }],
-    };
+    const messages = [];
     if (systemInstruction) {
-      payload.systemInstruction = { parts: [{ text: systemInstruction }] };
+      messages.push({ role: 'system', content: systemInstruction });
     }
+    messages.push({ role: 'user', content: prompt });
 
-    const response = await fetch(url, {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages,
+        max_tokens: 1024,
+      }),
     });
 
     if (!response.ok) {
@@ -40,7 +45,7 @@ module.exports = async function handler(req, res) {
     }
 
     const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const text = data.choices?.[0]?.message?.content || '';
     return res.status(200).json({ text });
   } catch (error) {
     return res.status(500).json({ error: error.message });
