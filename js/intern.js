@@ -97,7 +97,7 @@ const INTERNSHIPS = [
   {
     id: 7,
     title: "奥河内×デジタル ― 河内長野の観光資源をSNSで発信せよ！",
-    company: "河内長野市観光課（連携プロジェクト）",
+    company: "地域連携プロジェクト（デモ）",
     companyId: null,
     category: "マーケティング・広報",
     tags: ["SNS運用", "観光", "コンテンツ制作"],
@@ -112,7 +112,7 @@ const INTERNSHIPS = [
   {
     id: 8,
     title: "河内長野の食文化を全国へ ― 地場食材の新メニュー開発＆テスト販売",
-    company: "河内長野市産業観光課（連携プロジェクト）",
+    company: "地域連携プロジェクト（デモ）",
     companyId: null,
     category: "商品開発・起業",
     tags: ["食品開発", "マーケティング", "起業体験"],
@@ -127,7 +127,7 @@ const INTERNSHIPS = [
   {
     id: 9,
     title: "高齢化する住宅地をITで支える ― シニア向けデジタル支援プロジェクト",
-    company: "河内長野市福祉課（連携プロジェクト）",
+    company: "地域連携プロジェクト（デモ）",
     companyId: null,
     category: "福祉・教育",
     tags: ["福祉", "デジタル支援", "コミュニティ"],
@@ -142,7 +142,7 @@ const INTERNSHIPS = [
   {
     id: 10,
     title: "観心寺から学ぶ ― 小中学生向け歴史体験ワークショップの企画・運営",
-    company: "河内長野市教育委員会（連携プロジェクト）",
+    company: "地域連携プロジェクト（デモ）",
     companyId: null,
     category: "教育・企画",
     tags: ["教育", "歴史", "ワークショップ"],
