@@ -188,7 +188,7 @@ let isTyping = false;
 
 // --- Gemini API ---
 // ローカル（file://）ではGemini APIを直接呼び出し、本番では/api/geminiを経由
-const GEMINI_API_KEY = ''; // 環境変数またはVercelで設定してください
+const GEMINI_API_KEY = 'AIzaSyAFtnGd3_3h-b0pEe_aiHhX5q5XBXRdjV8';
 
 async function callGemini(prompt, systemInstruction) {
   const isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
