@@ -187,38 +187,22 @@ let step = 0;
 let isTyping = false;
 
 // --- Gemini API ---
-// ローカル（file://）ではGemini APIを直接呼び出し、本番では/api/geminiを経由
 const GEMINI_API_KEY = 'AIzaSyAFtnGd3_3h-b0pEe_aiHhX5q5XBXRdjV8';
 
 async function callGemini(prompt, systemInstruction) {
-  const isLocal = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-
-  if (isLocal) {
-    // ローカル: Gemini API直接呼び出し
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-    const payload = { contents: [{ parts: [{ text: prompt }] }] };
-    if (systemInstruction) {
-      payload.systemInstruction = { parts: [{ text: systemInstruction }] };
-    }
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('Gemini API request failed');
-    const data = await res.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || '申し訳ありません。回答を生成できませんでした。';
-  } else {
-    // 本番: サーバーサイドプロキシ経由
-    const res = await fetch('/api/gemini', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt, systemInstruction })
-    });
-    if (!res.ok) throw new Error('API request failed');
-    const data = await res.json();
-    return data.text || '申し訳ありません。回答を生成できませんでした。';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  const payload = { contents: [{ parts: [{ text: prompt }] }] };
+  if (systemInstruction) {
+    payload.systemInstruction = { parts: [{ text: systemInstruction }] };
   }
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error('Gemini API request failed');
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || '申し訳ありません。回答を生成できませんでした。';
 }
 
 // --- チャットUI ---
